@@ -10,4 +10,8 @@
     <string name="upcoming">Upcoming</string>
     <string name="finished">Finished</string>
     <string name="notification">Notification</string>
+    <string name="hint_search">Search Event...</string>
+    <string name="banner_upcoming">Banner Upcoming</string>
+    <string name="banner_finished">Banner Finished</string>
+    <string name="_0">0</string>
 </resources>

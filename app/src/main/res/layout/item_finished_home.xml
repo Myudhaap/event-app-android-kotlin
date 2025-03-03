@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="130dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginVertical="@dimen/base"
+    android:elevation="@dimen/extra_small"
+    app:cardMaxElevation="@dimen/extra_small"
+    android:padding="@dimen/small"
+    android:clipToPadding="true">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/img_banner"
+            android:layout_width="180dp"
+            android:layout_height="match_parent"
+            tools:srcCompat="@tools:sample/avatars"
+            android:scaleType="centerCrop"
+            app:layout_constraintStart_toStartOf="parent"
+            android:contentDescription="@string/banner_finished"/>
+
+        <TextView
+            android:id="@+id/tv_banner_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@id/img_banner"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginHorizontal="@dimen/small"
+            android:layout_marginTop="@dimen/small"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:text="@string/banner_finished"
+            android:textStyle="bold"
+            android:textSize="16sp"/>
+
+        <TextView
+            android:id="@+id/tv_banner_description"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@id/img_banner"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tv_banner_title"
+            android:layout_marginHorizontal="@dimen/small"
+            android:layout_marginVertical="@dimen/small"
+            android:ellipsize="end"
+            android:maxLines="5"
+            android:text="@string/banner_finished"
+            android:textSize="12sp"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</com.google.android.material.card.MaterialCardView>
