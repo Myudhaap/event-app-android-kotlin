@@ -5,9 +5,9 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(
-    tableName = "mst_event_favorite"
+    tableName = "mst_notification"
 )
-class EventFavoriteEntity(
+class NotificationEntity(
     @field:ColumnInfo(name = "id")
     @field:PrimaryKey(autoGenerate = true)
     val id: Int,
@@ -26,4 +26,10 @@ class EventFavoriteEntity(
 
     @field:ColumnInfo(name = "name")
     val name: String,
+
+    @field:ColumnInfo(name = "is_open")
+    val isOpen: Boolean,
+
+    @field:ColumnInfo(name = "created_at")
+    val createdAt: String
 )

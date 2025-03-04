@@ -3,11 +3,50 @@ package dev.mayutama.project.eventapp.ui.main.home
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import dev.mayutama.project.eventapp.data.remote.response.ListEventsItem
+import dev.mayutama.project.eventapp.data.repository.EventRepository
+import dev.mayutama.project.eventapp.util.Result
+import kotlinx.coroutines.launch
 
-class HomeViewModel : ViewModel() {
+class HomeViewModel(
+    private val eventRepository: EventRepository
+) : ViewModel() {
+    private val _listEventUpcoming = MutableLiveData<Result<List<ListEventsItem>>>()
+    val listEventUpcoming: LiveData<Result<List<ListEventsItem>>> = _listEventUpcoming
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is home Fragment"
+    private val _listEventFinished = MutableLiveData<Result<List<ListEventsItem>>>()
+    val listEventFinished: LiveData<Result<List<ListEventsItem>>> = _listEventFinished
+
+    fun getAllEventUpcoming(
+        active: String? = "1",
+        q: String? = null,
+        limit: Int? = null
+    ) {
+        if (_listEventUpcoming.value != null) {
+            return
+        }
+
+        viewModelScope.launch {
+            eventRepository.getAllEvent(active, limit, q).observeForever {
+                _listEventUpcoming.postValue(it)
+            }
+        }
     }
-    val text: LiveData<String> = _text
+
+    fun getAllEventFinished(
+        active: String? = "-1",
+        q: String? = null,
+        limit: Int? = null
+    ) {
+        if(_listEventFinished.value != null) {
+            return
+        }
+
+        viewModelScope.launch {
+            eventRepository.getAllEvent(active, limit, q).observeForever{
+                _listEventFinished.postValue(it)
+            }
+        }
+    }
 }

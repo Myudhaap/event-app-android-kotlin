@@ -11,6 +11,7 @@ import androidx.navigation.ui.setupWithNavController
 import dev.mayutama.project.eventapp.R
 import dev.mayutama.project.eventapp.base.BaseActivity
 import dev.mayutama.project.eventapp.databinding.ActivityMainBinding
+import dev.mayutama.project.eventapp.util.Util
 import dev.mayutama.project.eventapp.util.hide
 import dev.mayutama.project.eventapp.util.show
 
@@ -18,7 +19,7 @@ class MainActivity :
     BaseActivity<ActivityMainBinding>(ActivityMainBinding::inflate),
     OnClickListener
 {
-    private val mainViewModel: MainViewModel by viewModels(){ MainViewModelFactory.getInstance(this.application) }
+    private val mainViewModel: MainViewModel by viewModels{ MainViewModelFactory.getInstance(this.application) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         checkTheme()
@@ -93,5 +94,15 @@ class MainActivity :
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
             }
         }
+    }
+
+    fun showLoading(){
+        binding.loadingLayout.root.visibility = View.VISIBLE
+        Util.disableScreenAction(window)
+    }
+
+    fun hideLoading(){
+        binding.loadingLayout.root.visibility = View.GONE
+        Util.enableScreenAction(window)
     }
 }

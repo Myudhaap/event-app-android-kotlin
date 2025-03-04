@@ -21,7 +21,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fitsSystemWindows="true"
-        android:background="@color/white"
         android:elevation="4dp">
 
         <com.google.android.material.appbar.MaterialToolbar
@@ -29,8 +28,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:minHeight="?attr/actionBarSize"
-            app:layout_scrollFlags="scroll|enterAlways|snap"
-            app:layout_scrollEffect="compress">
+            android:background="@color/white">
+<!--            app:layout_scrollFlags="scroll|enterAlways|snap"-->
+<!--            app:layout_scrollEffect="compress"-->
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
@@ -98,8 +98,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        android:layout_marginBottom="126dp">
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <!-- NavHostFragment -->
         <fragment
@@ -124,4 +123,11 @@
         app:itemActiveIndicatorStyle="@style/Widget.Design.BottomNavigationView"
         app:layout_behavior="com.google.android.material.behavior.HideBottomViewOnScrollBehavior"/>
 
+    <include
+        android:id="@+id/loading_layout"
+        layout="@layout/layout_animation"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

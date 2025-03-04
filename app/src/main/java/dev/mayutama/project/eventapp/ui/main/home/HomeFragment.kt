@@ -1,34 +1,33 @@
 package dev.mayutama.project.eventapp.ui.main.home
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.view.View.OnClickListener
 import androidx.fragment.app.viewModels
-import com.google.android.material.search.SearchView
+import androidx.recyclerview.widget.LinearLayoutManager
 import dev.mayutama.project.eventapp.R
 import dev.mayutama.project.eventapp.base.BaseFragment
 import dev.mayutama.project.eventapp.databinding.FragmentHomeBinding
 import dev.mayutama.project.eventapp.ui.main.MainActivity
+import dev.mayutama.project.eventapp.util.Result
+import dev.mayutama.project.eventapp.util.Util
+import dev.mayutama.project.eventapp.util.hide
+import dev.mayutama.project.eventapp.util.show
 
 class HomeFragment :
     BaseFragment<FragmentHomeBinding>(FragmentHomeBinding::inflate),
     OnClickListener
 {
-    private lateinit var searchView: SearchView
+    private lateinit var context: MainActivity
 
-    private val homeViewModel: HomeViewModel by viewModels()
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
-
-
+    private val homeViewModel: HomeViewModel by viewModels{
+        HomeViewModelFactory.getInstance(requireActivity().application)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        initProperties(view)
+        initProperties()
         init()
         initListener()
     }
@@ -40,9 +39,78 @@ class HomeFragment :
     }
 
     private fun init() {
+        getUpcomingEvent()
+        getFinishedEvent()
     }
 
-    private fun initProperties(view: View) {
+    private fun getUpcomingEvent() {
+        val viewPager2 = binding.vpUpcoming
+        homeViewModel.getAllEventUpcoming("1", null, 5)
+
+        homeViewModel.listEventUpcoming.observe(viewLifecycleOwner){
+            when(it) {
+                is Result.Loading -> {
+                    context.showLoading()
+                }
+                is Result.Success -> {
+                    context.hideLoading()
+                    val adapter = UpcomingBannerAdapter()
+                    adapter.submitList(it.data)
+                    viewPager2.adapter = adapter
+                    binding.dotsUpcoming.attachTo(viewPager2)
+
+                    if(adapter.currentList.size == 0){
+                        viewPager2.hide()
+                        binding.dotsUpcoming.hide()
+                    }else{
+                        viewPager2.show()
+                        binding.dotsUpcoming.show()
+                    }
+                }
+                is Result.Error -> {
+                    context.hideLoading()
+                    Util.showSnackBar(binding.root, it.error)
+                }
+            }
+        }
+    }
+
+    private fun getFinishedEvent() {
+        homeViewModel.getAllEventFinished("0", null, 5)
+
+        homeViewModel.listEventFinished.observe(viewLifecycleOwner){
+            when(it){
+                is Result.Loading -> {
+                    context.showLoading()
+                }
+                is Result.Success -> {
+                    context.hideLoading()
+
+                    val adapter = FinishedEventAdapter()
+                    adapter.submitList(it.data)
+
+                    val layoutManager = LinearLayoutManager(binding.root.context, LinearLayoutManager.VERTICAL, false)
+                    binding.rvFinished.apply {
+                        this.adapter = adapter
+                        this.layoutManager = layoutManager
+                    }
+
+                    if(adapter.currentList.size == 0){
+                        binding.rvFinished.hide()
+                    }else{
+                        binding.rvFinished.show()
+                    }
+                }
+                is Result.Error -> {
+                    context.hideLoading()
+                    Util.showSnackBar(binding.root, it.error)
+                }
+            }
+        }
+    }
+
+    private fun initProperties() {
+        context = requireActivity() as MainActivity
     }
 
     private fun initListener() {
@@ -50,6 +118,6 @@ class HomeFragment :
     }
 
     private fun onClickSearchBar() {
-        (requireActivity() as MainActivity).onClickSearch()
+        context.onClickSearch()
     }
 }

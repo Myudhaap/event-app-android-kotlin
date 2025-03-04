@@ -2,13 +2,14 @@
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="130dp"
+    android:layout_height="150dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_marginVertical="@dimen/base"
-    android:elevation="@dimen/extra_small"
-    app:cardMaxElevation="@dimen/extra_small"
+    android:layout_marginVertical="@dimen/small"
+    android:elevation="@dimen/small"
+    app:cardMaxElevation="@dimen/small"
     android:padding="@dimen/small"
-    android:clipToPadding="true">
+    android:clipToPadding="true"
+    android:backgroundTint="@color/white">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -46,9 +47,9 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_banner_title"
             android:layout_marginHorizontal="@dimen/small"
-            android:layout_marginVertical="@dimen/small"
+            android:layout_marginVertical="@dimen/base"
             android:ellipsize="end"
-            android:maxLines="5"
+            android:maxLines="4"
             android:text="@string/banner_finished"
             android:textSize="12sp"/>
     </androidx.constraintlayout.widget.ConstraintLayout>

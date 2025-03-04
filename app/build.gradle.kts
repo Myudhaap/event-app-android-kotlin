@@ -88,6 +88,8 @@ dependencies {
     // Shimmer Skeleton
     implementation(libs.shimmer)
 
+    implementation(libs.lottie)
+
     // Test
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)

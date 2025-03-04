@@ -7,6 +7,6 @@ import retrofit2.http.QueryMap
 interface EventService {
     @GET("events")
     suspend fun getAllEvent(
-        @QueryMap queryParams: Map<String, Any>
+        @QueryMap queryParams: Map<String, String>
     ): EventResponse
 }
