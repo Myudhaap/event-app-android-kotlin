@@ -18,15 +18,16 @@ class HomeViewModel(
     private val _listEventFinished = MutableLiveData<Result<List<ListEventsItem>>>()
     val listEventFinished: LiveData<Result<List<ListEventsItem>>> = _listEventFinished
 
-    fun getAllEventUpcoming(
+    init{
+        getAllEventUpcoming(limit = 5)
+        getAllEventFinished(limit = 5)
+    }
+
+    private fun getAllEventUpcoming(
         active: String? = "1",
         q: String? = null,
         limit: Int? = null
     ) {
-        if (_listEventUpcoming.value != null) {
-            return
-        }
-
         viewModelScope.launch {
             eventRepository.getAllEvent(active, limit, q).observeForever {
                 _listEventUpcoming.postValue(it)
@@ -34,15 +35,11 @@ class HomeViewModel(
         }
     }
 
-    fun getAllEventFinished(
-        active: String? = "-1",
+    private fun getAllEventFinished(
+        active: String? = "0",
         q: String? = null,
         limit: Int? = null
     ) {
-        if(_listEventFinished.value != null) {
-            return
-        }
-
         viewModelScope.launch {
             eventRepository.getAllEvent(active, limit, q).observeForever{
                 _listEventFinished.postValue(it)

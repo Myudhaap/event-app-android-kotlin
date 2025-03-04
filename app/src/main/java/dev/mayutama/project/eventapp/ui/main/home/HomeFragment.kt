@@ -45,7 +45,6 @@ class HomeFragment :
 
     private fun getUpcomingEvent() {
         val viewPager2 = binding.vpUpcoming
-        homeViewModel.getAllEventUpcoming("1", null, 5)
 
         homeViewModel.listEventUpcoming.observe(viewLifecycleOwner){
             when(it) {
@@ -76,8 +75,6 @@ class HomeFragment :
     }
 
     private fun getFinishedEvent() {
-        homeViewModel.getAllEventFinished("0", null, 5)
-
         homeViewModel.listEventFinished.observe(viewLifecycleOwner){
             when(it){
                 is Result.Loading -> {
