@@ -1,4 +1,4 @@
-package dev.mayutama.project.eventapp.ui.main.upcomming
+package dev.mayutama.project.eventapp.ui.main
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -8,12 +8,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import dev.mayutama.project.eventapp.R
 import dev.mayutama.project.eventapp.data.remote.response.ListEventsItem
-import dev.mayutama.project.eventapp.databinding.ItemUpcomingType1UpcomingBinding
-import dev.mayutama.project.eventapp.databinding.ItemUpcomingType2UpcomingBinding
+import dev.mayutama.project.eventapp.databinding.ItemEventType1Binding
+import dev.mayutama.project.eventapp.databinding.ItemEventType2Binding
 
-class UpcomingAdapter: ListAdapter<ListEventsItem, RecyclerView.ViewHolder>(DIFF_CALLBACK) {
+class EventStaggeredAdapter: ListAdapter<ListEventsItem, RecyclerView.ViewHolder>(DIFF_CALLBACK) {
 
-    inner class UpcomingViewHolderType1(private val binding: ItemUpcomingType1UpcomingBinding): RecyclerView.ViewHolder(binding.root){
+    inner class UpcomingViewHolderType1(private val binding: ItemEventType1Binding): RecyclerView.ViewHolder(binding.root){
         fun bind(item: ListEventsItem){
             Glide.with(binding.root.context)
                 .load(item.mediaCover)
@@ -25,7 +25,7 @@ class UpcomingAdapter: ListAdapter<ListEventsItem, RecyclerView.ViewHolder>(DIFF
         }
     }
 
-    inner class UpcomingViewHolderType2(private val binding: ItemUpcomingType2UpcomingBinding): RecyclerView.ViewHolder(binding.root){
+    inner class UpcomingViewHolderType2(private val binding: ItemEventType2Binding): RecyclerView.ViewHolder(binding.root){
         fun bind(item: ListEventsItem){
             Glide.with(binding.root.context)
                 .load(item.mediaCover)
@@ -43,10 +43,10 @@ class UpcomingAdapter: ListAdapter<ListEventsItem, RecyclerView.ViewHolder>(DIFF
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         if(viewType == TYPE_2){
-            val binding = ItemUpcomingType2UpcomingBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            val binding = ItemEventType2Binding.inflate(LayoutInflater.from(parent.context), parent, false)
             return UpcomingViewHolderType2(binding)
         }else{
-            val binding = ItemUpcomingType1UpcomingBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+            val binding = ItemEventType1Binding.inflate(LayoutInflater.from(parent.context), parent, false)
             return UpcomingViewHolderType1(binding)
         }
     }
