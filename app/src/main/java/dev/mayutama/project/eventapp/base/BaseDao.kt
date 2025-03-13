@@ -17,5 +17,6 @@ interface BaseDao<T> {
     @Update
     suspend fun update(data: T)
 
-    @Delete fun delete(data: T)
+    @Delete
+    suspend fun delete(data: T)
 }

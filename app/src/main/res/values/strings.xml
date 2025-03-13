@@ -16,4 +16,5 @@
     <string name="_0">0</string>
     <string name="media_cover_upcoming">Media Cover Upcoming</string>
     <string name="upcoming_title">Upcoming Title</string>
+    <string name="event_favorite">Event Favorite</string>
 </resources>

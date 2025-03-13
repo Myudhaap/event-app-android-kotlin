@@ -10,7 +10,7 @@ import androidx.room.PrimaryKey
 class EventFavoriteEntity(
     @field:ColumnInfo(name = "id")
     @field:PrimaryKey(autoGenerate = true)
-    val id: Int,
+    val id: Int? = null,
 
     @field:ColumnInfo(name = "event_id")
     val eventId: Int,

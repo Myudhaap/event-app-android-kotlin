@@ -10,7 +10,6 @@ import dev.mayutama.project.eventapp.util.Result
 
 class EventRepository(
     private val eventService: EventService,
-    private val eventFavoriteDao: EventFavoriteDao,
 ) {
     fun getAllEvent(
         active: String?,
@@ -44,10 +43,9 @@ class EventRepository(
 
         fun getInstance(
             eventService: EventService,
-            eventFavoriteDao: EventFavoriteDao
         ): EventRepository {
             return INSTANCE ?: synchronized(this){
-                INSTANCE = EventRepository(eventService, eventFavoriteDao)
+                INSTANCE = EventRepository(eventService)
                 INSTANCE as EventRepository
             }
         }
