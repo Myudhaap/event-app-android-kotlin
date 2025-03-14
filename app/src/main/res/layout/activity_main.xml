@@ -12,7 +12,7 @@
         android:layout_height="match_parent"
         android:hint="@string/hint_search"
         android:fitsSystemWindows="true"
-        app:backgroundTint="@color/white">
+        app:backgroundTint="?attr/colorOnSurface">
 
     </com.google.android.material.search.SearchView>
 
@@ -28,7 +28,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:minHeight="?attr/actionBarSize"
-            android:background="@color/white">
+            style="@style/AppBarStyle">
 <!--            app:layout_scrollFlags="scroll|enterAlways|snap"-->
 <!--            app:layout_scrollEffect="compress"-->
 
@@ -89,7 +89,7 @@
                     app:layout_constraintEnd_toStartOf="@id/img_notification"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    android:background="@android:color/transparent"/>
+                    android:background="@android:color/transparent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </com.google.android.material.appbar.MaterialToolbar>
 
@@ -115,7 +115,7 @@
         android:id="@+id/nav_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
+        style="@style/BottomNavigationStyle"
         android:layout_gravity="bottom"
         app:menu="@menu/bottom_nav_menu"
         app:itemTextColor="@color/bottom_nav_color"

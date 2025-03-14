@@ -26,4 +26,6 @@
     <string name="description">Description</string>
     <string name="register">Register</string>
     <string name="button_back">Button Back</string>
+    <string name="dark_mode">Dark Mode</string>
+    <string name="daily_reminder">Daily Reminder</string>
 </resources>

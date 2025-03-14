@@ -9,7 +9,7 @@
     app:cardMaxElevation="@dimen/small"
     android:padding="@dimen/small"
     android:clipToPadding="true"
-    android:backgroundTint="@color/white">
+    style="@style/BaseContainerSecondaryStyle">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

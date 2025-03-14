@@ -29,6 +29,14 @@ class MainActivity :
         initListener()
     }
 
+    override fun onBackPressed() {
+        if(binding.searchView.isShowing){
+            binding.searchView.hide()
+        }else{
+            super.onBackPressed()
+        }
+    }
+
     private fun init(){
         setSupportActionBar(binding.appBar)
         setupBottomNav()

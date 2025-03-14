@@ -17,7 +17,6 @@ import dev.mayutama.project.eventapp.databinding.ActivityEventDetailBinding
 import dev.mayutama.project.eventapp.util.Result
 import dev.mayutama.project.eventapp.util.Util
 import okhttp3.internal.format
-import java.util.Locale
 
 class EventDetailActivity :
     BaseActivity<ActivityEventDetailBinding>(ActivityEventDetailBinding::inflate),
@@ -76,7 +75,7 @@ class EventDetailActivity :
 
     @SuppressLint("UseCompatLoadingForDrawables")
     private fun observeEventDetail(){
-        eventDetailViewModel.event.observe(this, { state ->
+        eventDetailViewModel.event.observe(this){ state ->
             when(state){
                 is Result.Loading -> {
                     showLoading()
@@ -95,13 +94,13 @@ class EventDetailActivity :
                             .into(binding.imgEvent)
 
                         binding.tvTitle.text = it.name
-                        if(it.cityName?.toLowerCase(Locale.ROOT) != "online"){
+                        if(it.cityName?.lowercase() != "online"){
                             binding.tvCityName.background = resources.getDrawable(R.drawable.bg_offline)
                         }
                         binding.tvCityName.text = it.cityName
                         binding.tvCategory.text = it.category
-                        binding.tvQuota.setText(format(getString(R.string.quoat_format, it.quota)))
-                        binding.tvTimes.setText(format(getString(R.string.datetimes_format, "${it.beginTime} s\\d ${it.endTime}")))
+                        binding.tvQuota.text = format(getString(R.string.quoat_format, it.quota))
+                        binding.tvTimes.text = format(getString(R.string.datetimes_format, "${it.beginTime} s\\d ${it.endTime}"))
                         binding.tvDescription.text = Html.fromHtml(it.description, Html.FROM_HTML_MODE_COMPACT)
                     }
                 }
@@ -111,12 +110,12 @@ class EventDetailActivity :
                     Util.showToast(this, state.error)
                 }
             }
-        })
+        }
     }
 
     @SuppressLint("UseCompatLoadingForDrawables")
     private fun observeIsFavorite(){
-        eventDetailViewModel.isFavorite.observe(this, { state ->
+        eventDetailViewModel.isFavorite.observe(this){ state ->
             when(state){
                 is Result.Loading -> {
                     showLoading()
@@ -139,15 +138,15 @@ class EventDetailActivity :
                     Util.showToast(this, state.error)
                 }
             }
-        })
+        }
     }
 
-    fun showLoading(){
+    private fun showLoading(){
         binding.loadingLayout.root.visibility = View.VISIBLE
         Util.disableScreenAction(window)
     }
 
-    fun hideLoading(){
+    private fun hideLoading(){
         binding.loadingLayout.root.visibility = View.GONE
         Util.enableScreenAction(window)
     }

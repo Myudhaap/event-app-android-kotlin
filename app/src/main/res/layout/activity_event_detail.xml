@@ -54,7 +54,8 @@
             app:layout_constraintTop_toBottomOf="@id/img_event"
             android:layout_marginTop="-24dp"
             android:elevation="@dimen/small"
-            android:paddingBottom="@dimen/base">
+            android:paddingBottom="@dimen/base"
+            style="@style/BaseContainerSecondaryStyle">
 
             <TextView
                 android:id="@+id/tv_title"
@@ -66,7 +67,7 @@
                 android:textSize="22sp"
                 android:textStyle="bold"
                 android:paddingHorizontal="@dimen/base"
-                android:textColor="@color/black"/>
+                style="@style/TextBadge"/>
 
             <TextView
                 android:id="@+id/tv_quota"
@@ -90,7 +91,8 @@
                 android:text="@string/online"
                 android:background="@drawable/bg_online"
                 android:paddingVertical="@dimen/small"
-                android:paddingHorizontal="@dimen/base"/>
+                android:paddingHorizontal="@dimen/base"
+                style="@style/TextBadge"/>
 
             <TextView
                 android:id="@+id/tv_category"
@@ -103,7 +105,8 @@
                 android:text="@string/category"
                 android:background="@drawable/bg_category"
                 android:paddingVertical="@dimen/small"
-                android:paddingHorizontal="@dimen/base"/>
+                android:paddingHorizontal="@dimen/base"
+                style="@style/TextBadge"/>
 
             <TextView
                 android:id="@+id/tv_times"

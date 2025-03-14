@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="200dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -11,7 +10,7 @@
     android:elevation="@dimen/extra_small"
     app:cardMaxElevation="@dimen/extra_small"
     app:cardCornerRadius="4dp"
-    android:backgroundTint="@color/white">
+    style="@style/BaseContainerSecondaryStyle">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

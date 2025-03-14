@@ -3,6 +3,7 @@ package dev.mayutama.project.eventapp.ui.main.finished
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.asFlow
 import androidx.lifecycle.viewModelScope
 import dev.mayutama.project.eventapp.data.remote.response.ListEventsItem
 import dev.mayutama.project.eventapp.data.repository.EventRepository
@@ -25,7 +26,7 @@ class FinishedViewModel(
         limit: Int = 50
     ) {
         viewModelScope.launch {
-            eventRepository.getAllEvent(active, limit, q).observeForever {
+            eventRepository.getAllEvent(active, limit, q).asFlow().collect{
                 _listFinishedEvent.postValue(it)
             }
         }

@@ -23,10 +23,6 @@ class FavoriteFragment :
         super.onViewCreated(view, savedInstanceState)
         initProperties()
 
-        if(savedInstanceState == null){
-            getFavoriteEvent()
-        }
-
         init()
     }
 
@@ -35,12 +31,12 @@ class FavoriteFragment :
     }
 
     private fun init(){
-
+        getFavoriteEvent()
     }
 
     private fun getFavoriteEvent(){
         val rvFavorite = binding.rvFavorite
-        favoriteViewModel.getEventFavoriteList().observe(viewLifecycleOwner, {
+        favoriteViewModel.eventFavoriteList.observe(viewLifecycleOwner){
             when(it) {
                 is Result.Loading -> {
                     context.showLoading()
@@ -60,6 +56,6 @@ class FavoriteFragment :
                     Util.showToast(context, it.error)
                 }
             }
-        })
+        }
     }
 }
