@@ -17,4 +17,13 @@
     <string name="media_cover_upcoming">Media Cover Upcoming</string>
     <string name="upcoming_title">Upcoming Title</string>
     <string name="event_favorite">Event Favorite</string>
+    <string name="image_event">Image Event</string>
+    <string name="event">Event</string>
+    <string name="online">Online</string>
+    <string name="category">Category</string>
+    <string name="quoat_format">Quota: %d</string>
+    <string name="datetimes_format">Datetimes: %s</string>
+    <string name="description">Description</string>
+    <string name="register">Register</string>
+    <string name="button_back">Button Back</string>
 </resources>

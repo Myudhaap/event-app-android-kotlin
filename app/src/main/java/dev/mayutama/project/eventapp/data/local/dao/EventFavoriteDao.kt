@@ -15,7 +15,7 @@ interface EventFavoriteDao: BaseDao<EventFavoriteEntity> {
     fun getAllEventFavorite(limit: Int = 50): LiveData<List<EventFavoriteEntity>>
 
     @Query("""
-        SELECT EXISTS(SELECT * FROM mst_event_favorite WHERE event_id = :id)
+        SELECT EXISTS(SELECT * FROM mst_event_favorite WHERE id = :id)
     """)
     suspend fun isFavoriteEvent(id: Int): Boolean
 
@@ -25,7 +25,7 @@ interface EventFavoriteDao: BaseDao<EventFavoriteEntity> {
     suspend fun deleteAll()
 
     @Query("""
-        SELECT * FROM mst_event_favorite WHERE event_id = :id
+        SELECT * FROM mst_event_favorite WHERE id = :id
     """)
     suspend fun getById(id: Int): EventFavoriteEntity
 }

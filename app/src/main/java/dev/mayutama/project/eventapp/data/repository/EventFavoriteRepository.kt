@@ -28,7 +28,6 @@ class EventFavoriteRepository private constructor(
                 isFavoriteEvent
             }?.map { event ->
                 EventFavoriteEntity(
-                    null,
                     event.id!!,
                     event.mediaCover!!,
                     event.summary!!,
@@ -52,19 +51,32 @@ class EventFavoriteRepository private constructor(
     }
 
     suspend fun addEventFavorite(data: ListEventsItem){
-        eventFavoriteDao.insert(EventFavoriteEntity(
-            null,
+        Log.d("EventFavoriteRepository", "addEventFavorite: $data")
+        val eventFavorite = EventFavoriteEntity(
             data.id!!,
             data.mediaCover!!,
             data.summary!!,
             data.description!!,
             data.name!!
-        ))
+        )
+        Log.d("EventFavoriteRepository", "addEventFavorite: $eventFavorite")
+        eventFavoriteDao.insert(eventFavorite)
     }
 
     suspend fun deleteEventFavorite(data: ListEventsItem){
         val event = eventFavoriteDao.getById(data.id!!)
         eventFavoriteDao.delete(event)
+    }
+
+    fun checkEventFavorite(id: Int): LiveData<Result<Boolean>> = liveData {
+        emit(Result.Loading)
+
+        try{
+            val isFavorite = eventFavoriteDao.isFavoriteEvent(id)
+            emit(Result.Success(isFavorite))
+        }catch (e: Exception){
+            emit(Result.Error(e.message.toString()))
+        }
     }
 
     companion object {

@@ -13,6 +13,17 @@ data class EventResponse(
 	val message: String? = null
 )
 
+data class EventDetailResponse(
+	@field:SerializedName("event")
+	val event: ListEventsItem? = null,
+
+	@field:SerializedName("error")
+	val error: Boolean? = null,
+
+	@field:SerializedName("message")
+	val message: String? = null
+)
+
 data class ListEventsItem(
 
 	@field:SerializedName("summary")

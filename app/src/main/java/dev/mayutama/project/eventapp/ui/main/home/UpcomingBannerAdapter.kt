@@ -1,5 +1,6 @@
 package dev.mayutama.project.eventapp.ui.main.home
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -9,6 +10,7 @@ import com.bumptech.glide.Glide
 import dev.mayutama.project.eventapp.R
 import dev.mayutama.project.eventapp.data.remote.response.ListEventsItem
 import dev.mayutama.project.eventapp.databinding.ItemBannerUpcomingBinding
+import dev.mayutama.project.eventapp.ui.eventDetail.EventDetailActivity
 
 class UpcomingBannerAdapter:
     ListAdapter<ListEventsItem, RecyclerView.ViewHolder>(DIFF_CALLBACK)
@@ -22,6 +24,13 @@ class UpcomingBannerAdapter:
                 .into(binding.imgBanner)
 
             binding.tvBannerTitle.text = item.name.toString().trim()
+            binding.root.setOnClickListener {
+                val intent = Intent(binding.root.context, EventDetailActivity::class.java).apply {
+                    putExtra(EventDetailActivity.EXTRA_ID, item.id)
+                }
+
+                binding.root.context.startActivity(intent)
+            }
         }
     }
 

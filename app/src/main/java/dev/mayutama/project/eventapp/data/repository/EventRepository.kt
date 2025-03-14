@@ -36,6 +36,20 @@ class EventRepository(
         }
     }
 
+    fun getEventById(
+        id: Int
+    ): LiveData<Result<ListEventsItem>> = liveData {
+        emit(Result.Loading)
+
+        try{
+            val response = eventService.getEventById(id)
+            emit(Result.Success(response.event!!))
+        }catch (e: Exception){
+            Log.d(TAG, "getEventById: ${e.message.toString()}")
+            emit(Result.Error(e.message.toString()))
+        }
+    }
+
     companion object{
         @Volatile
         private var INSTANCE: EventRepository? = null

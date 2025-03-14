@@ -1,5 +1,6 @@
 package dev.mayutama.project.eventapp.ui.main
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -10,6 +11,7 @@ import dev.mayutama.project.eventapp.R
 import dev.mayutama.project.eventapp.data.remote.response.ListEventsItem
 import dev.mayutama.project.eventapp.databinding.ItemEventType1Binding
 import dev.mayutama.project.eventapp.databinding.ItemEventType2Binding
+import dev.mayutama.project.eventapp.ui.eventDetail.EventDetailActivity
 
 class EventStaggeredAdapter: ListAdapter<ListEventsItem, RecyclerView.ViewHolder>(DIFF_CALLBACK) {
 
@@ -22,6 +24,13 @@ class EventStaggeredAdapter: ListAdapter<ListEventsItem, RecyclerView.ViewHolder
                 .into(binding.imgUpcoming)
 
             binding.tvTitle.text = item.name.toString().trim()
+            binding.root.setOnClickListener {
+                val intent = Intent(binding.root.context, EventDetailActivity::class.java).apply {
+                    putExtra(EventDetailActivity.EXTRA_ID, item.id)
+                }
+
+                binding.root.context.startActivity(intent)
+            }
         }
     }
 
@@ -34,6 +43,13 @@ class EventStaggeredAdapter: ListAdapter<ListEventsItem, RecyclerView.ViewHolder
                 .into(binding.imgUpcoming)
 
             binding.tvTitle.text = item.name.toString().trim()
+            binding.root.setOnClickListener {
+                val intent = Intent(binding.root.context, EventDetailActivity::class.java).apply {
+                    putExtra(EventDetailActivity.EXTRA_ID, item.id)
+                }
+
+                binding.root.context.startActivity(intent)
+            }
         }
     }
 

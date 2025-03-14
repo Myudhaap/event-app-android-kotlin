@@ -6,17 +6,15 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import dev.mayutama.project.eventapp.data.local.dao.EventFavoriteDao
 import dev.mayutama.project.eventapp.data.local.dao.NotificationDao
-import dev.mayutama.project.eventapp.data.local.entity.EventEntity
 import dev.mayutama.project.eventapp.data.local.entity.EventFavoriteEntity
 import dev.mayutama.project.eventapp.data.local.entity.NotificationEntity
 
 @Database(
     entities = [
-        EventEntity::class,
         EventFavoriteEntity::class,
         NotificationEntity::class
     ],
-    version = 1,
+    version = 2,
     exportSchema = false
 )
 abstract class EventDatabase: RoomDatabase() {
@@ -33,7 +31,7 @@ abstract class EventDatabase: RoomDatabase() {
                     application,
                     EventDatabase::class.java,
                     "db_event"
-                ).build()
+                ).fallbackToDestructiveMigration().build()
 
                 return INSTANCE as EventDatabase
             }

@@ -1,6 +1,7 @@
 package dev.mayutama.project.eventapp.ui.main.favorite
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -10,6 +11,7 @@ import com.bumptech.glide.Glide
 import dev.mayutama.project.eventapp.R
 import dev.mayutama.project.eventapp.data.local.entity.EventFavoriteEntity
 import dev.mayutama.project.eventapp.databinding.ItemEventFavoriteBinding
+import dev.mayutama.project.eventapp.ui.eventDetail.EventDetailActivity
 
 class FavoriteAdapter: ListAdapter<EventFavoriteEntity, FavoriteAdapter.FavoriteViewHolder>(DIFF_CALLBACK) {
     inner class FavoriteViewHolder(private val binding: ItemEventFavoriteBinding): RecyclerView.ViewHolder(binding.root) {
@@ -22,6 +24,13 @@ class FavoriteAdapter: ListAdapter<EventFavoriteEntity, FavoriteAdapter.Favorite
 
             binding.tvTitle.text = data.name
             binding.tvDescription.text = data.summary
+            binding.root.setOnClickListener {
+                val intent = Intent(binding.root.context, EventDetailActivity::class.java).apply {
+                    putExtra(EventDetailActivity.EXTRA_ID, data.eventId)
+                }
+
+                binding.root.context.startActivity(intent)
+            }
         }
     }
 
@@ -41,7 +50,7 @@ class FavoriteAdapter: ListAdapter<EventFavoriteEntity, FavoriteAdapter.Favorite
                 oldItem: EventFavoriteEntity,
                 newItem: EventFavoriteEntity
             ): Boolean {
-                return oldItem.id == newItem.id
+                return oldItem.eventId == newItem.eventId
             }
 
             @SuppressLint("DiffUtilEquals")
