@@ -12,7 +12,24 @@
         android:layout_height="match_parent"
         android:hint="@string/hint_search"
         android:fitsSystemWindows="true"
-        app:backgroundTint="?attr/colorOnSurface">
+        app:hideNavigationIcon="true"
+        app:backgroundTint="?attr/colorPrimaryContainer">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_event_search"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+        <TextView
+            android:id="@+id/tv_not_found"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            android:text="@string/not_found"
+            android:visibility="invisible"/>
 
     </com.google.android.material.search.SearchView>
 
