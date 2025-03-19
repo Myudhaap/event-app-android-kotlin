@@ -3,7 +3,6 @@ package dev.mayutama.project.eventapp.data.repository
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.liveData
-import dev.mayutama.project.eventapp.data.local.dao.EventFavoriteDao
 import dev.mayutama.project.eventapp.data.remote.response.ListEventsItem
 import dev.mayutama.project.eventapp.data.remote.service.EventService
 import dev.mayutama.project.eventapp.util.Result

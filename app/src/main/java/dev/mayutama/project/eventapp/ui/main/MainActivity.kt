@@ -1,8 +1,12 @@
 package dev.mayutama.project.eventapp.ui.main
 
+import android.Manifest
+import android.os.Build
 import android.os.Bundle
 import android.view.View
 import android.view.View.OnClickListener
+import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatDelegate
 import com.google.android.material.bottomnavigation.BottomNavigationView
@@ -20,6 +24,16 @@ class MainActivity :
     OnClickListener
 {
     private val mainViewModel: MainViewModel by viewModels{ MainViewModelFactory.getInstance(this.application) }
+
+    private val requestPermissionLauncher = registerForActivityResult(
+        ActivityResultContracts.RequestPermission()
+    ){isGranted ->
+        if (isGranted) {
+            Toast.makeText(this, "Notifications permission granted", Toast.LENGTH_SHORT).show()
+        } else {
+            Toast.makeText(this, "Notifications permission rejected", Toast.LENGTH_SHORT).show()
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         checkTheme()
@@ -40,6 +54,10 @@ class MainActivity :
     private fun init(){
         setSupportActionBar(binding.appBar)
         setupBottomNav()
+
+        if(Build.VERSION.SDK_INT >= 33) {
+            requestPermissionLauncher.launch(Manifest.permission.POST_NOTIFICATIONS)
+        }
 
         binding.searchView
             .editText

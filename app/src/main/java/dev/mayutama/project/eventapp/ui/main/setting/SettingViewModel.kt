@@ -20,6 +20,10 @@ class SettingViewModel(
         return dataStorePreferences.getThemeSetting().asLiveData()
     }
 
+    fun getDailyReminderSetting(): LiveData<Boolean> {
+        return dataStorePreferences.getReminderSetting().asLiveData()
+    }
+
     fun saveDailyReminderSetting(isReminder: Boolean) {
         viewModelScope.launch {
             dataStorePreferences.saveReminderSetting(isReminder)
