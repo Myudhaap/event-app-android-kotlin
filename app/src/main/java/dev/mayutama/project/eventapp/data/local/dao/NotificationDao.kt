@@ -18,10 +18,10 @@ interface NotificationDao: BaseDao<NotificationEntity> {
     @Query(
         """
         SELECT COUNT(id) FROM mst_notification
-        WHERE is_open = 1
+        WHERE is_open = 0
     """
     )
-    suspend fun getCountNotification(): Int
+    fun getCountNotification(): LiveData<Int>
 
     @Query("""
         SELECT * FROM mst_notification WHERE id = :id

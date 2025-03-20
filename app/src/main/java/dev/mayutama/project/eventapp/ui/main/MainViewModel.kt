@@ -7,11 +7,13 @@ import androidx.lifecycle.asFlow
 import androidx.lifecycle.viewModelScope
 import dev.mayutama.project.eventapp.data.remote.response.ListEventsItem
 import dev.mayutama.project.eventapp.data.repository.EventRepository
+import dev.mayutama.project.eventapp.data.repository.NotificationRepository
 import kotlinx.coroutines.launch
 import dev.mayutama.project.eventapp.util.Result
 
 class MainViewModel(
-    private val eventRepository: EventRepository
+    private val eventRepository: EventRepository,
+    private val notificationRepository: NotificationRepository
 ): ViewModel() {
     private val _eventSearch = MutableLiveData<Result<List<ListEventsItem>>>()
     val eventSearch: LiveData<Result<List<ListEventsItem>>> get() = _eventSearch
@@ -23,4 +25,6 @@ class MainViewModel(
             }
         }
     }
+
+    fun getNotificationCount() = notificationRepository.getNotificationCount()
 }

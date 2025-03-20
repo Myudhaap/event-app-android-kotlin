@@ -65,6 +65,7 @@ class MainActivity :
             }
 
         observeEventSearch()
+        observeCountNotification()
 
         val callback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
@@ -151,6 +152,24 @@ class MainActivity :
                         adapter.submitList(null)
                         binding.tvNotFound.show()
                     }
+                }
+                is Result.Error -> {
+                    hideLoading()
+                    Util.showToast(this, it.error)
+                }
+            }
+        }
+    }
+
+    private fun observeCountNotification(){
+        mainViewModel.getNotificationCount().observe(this){
+            when(it){
+                is Result.Loading -> {
+                    showLoading()
+                }
+                is Result.Success -> {
+                    hideLoading()
+                    binding.tvCountNotif.text = String.format(it.data.toString())
                 }
                 is Result.Error -> {
                     hideLoading()
