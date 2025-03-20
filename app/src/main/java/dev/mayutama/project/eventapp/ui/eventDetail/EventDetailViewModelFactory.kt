@@ -5,14 +5,15 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import dev.mayutama.project.eventapp.data.repository.EventFavoriteRepository
 import dev.mayutama.project.eventapp.data.repository.EventRepository
+import dev.mayutama.project.eventapp.data.repository.NotificationRepository
 import dev.mayutama.project.eventapp.di.Injection
 
-class EventDetailViewModelFactory private constructor(private val eventRepository: EventRepository, private val eventFavoriteRepository: EventFavoriteRepository):
+class EventDetailViewModelFactory private constructor(private val eventRepository: EventRepository, private val eventFavoriteRepository: EventFavoriteRepository, private val notificationRepository: NotificationRepository):
     ViewModelProvider.NewInstanceFactory()
 {
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
         if(modelClass.isAssignableFrom(EventDetailViewModel::class.java)){
-            return EventDetailViewModel(eventRepository, eventFavoriteRepository) as T
+            return EventDetailViewModel(eventRepository, eventFavoriteRepository, notificationRepository) as T
         }
         throw IllegalArgumentException("Unknown class ViewModel: ${modelClass.name}")
     }
@@ -23,7 +24,7 @@ class EventDetailViewModelFactory private constructor(private val eventRepositor
 
             fun getInstance(application: Application): EventDetailViewModelFactory {
                 return INSTANCE ?: synchronized(this){
-                    INSTANCE = EventDetailViewModelFactory(Injection.provideEventRepository(application), Injection.provideEventFavoriteRepository(application))
+                    INSTANCE = EventDetailViewModelFactory(Injection.provideEventRepository(application), Injection.provideEventFavoriteRepository(application), Injection.provideNotificationRepository(application))
                     INSTANCE as EventDetailViewModelFactory
                 }
             }

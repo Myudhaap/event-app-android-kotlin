@@ -1,22 +1,31 @@
 package dev.mayutama.project.eventapp.ui.main.setting
 
+import android.app.Application
 import android.app.NotificationChannel
 import android.app.NotificationManager
+import android.app.PendingIntent
 import android.content.Context
+import android.content.Intent
 import android.graphics.Bitmap
 import android.os.Build
 import android.util.Log
 import androidx.core.app.NotificationCompat
+import androidx.core.app.TaskStackBuilder
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
 import com.bumptech.glide.Glide
 import dev.mayutama.project.eventapp.R
 import dev.mayutama.project.eventapp.config.RetrofitConfig
+import dev.mayutama.project.eventapp.data.remote.response.ListEventsItem
 import dev.mayutama.project.eventapp.data.remote.service.EventService
+import dev.mayutama.project.eventapp.data.repository.NotificationRepository
+import dev.mayutama.project.eventapp.di.Injection
+import dev.mayutama.project.eventapp.ui.eventDetail.EventDetailActivity
 
 class WorkerEventNotification(context: Context, workerParams: WorkerParameters): CoroutineWorker(context, workerParams) {
     private var resultStatus: Result? = null
     private val service: EventService = RetrofitConfig.eventService
+    private val notificationRepository: NotificationRepository = Injection.provideNotificationRepository(applicationContext as Application)
 
     override suspend fun doWork(): Result {
         return getEvent()
@@ -34,7 +43,8 @@ class WorkerEventNotification(context: Context, workerParams: WorkerParameters):
             }else{
                 Log.d(TAG, "getEvent: ${events?.get(0)}")
                 val bitmap = getBitmapImage(events?.get(0)?.imageLogo!!)
-                showNotification(events[0].name!!, events[0].summary, bitmap)
+                val notificationId = notificationRepository.addNotification(events[0])
+                showNotification(events[0].name!!, events[0].summary, bitmap, events[0], notificationId)
             }
 
             resultStatus = Result.success()
@@ -46,7 +56,7 @@ class WorkerEventNotification(context: Context, workerParams: WorkerParameters):
         return resultStatus as Result
     }
 
-    private fun showNotification(title: String, description: String?, bitmap: Bitmap? = null) {
+    private fun showNotification(title: String, description: String?, bitmap: Bitmap? = null, event: ListEventsItem? = null, notificationId: Long? = null) {
         val notificationManager = applicationContext.getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
         val notificationBuilder = NotificationCompat.Builder(applicationContext, CHANNEL_ID).apply {
             setContentTitle(title)
@@ -56,6 +66,22 @@ class WorkerEventNotification(context: Context, workerParams: WorkerParameters):
             setDefaults(NotificationCompat.DEFAULT_ALL)
             if(bitmap != null){
                 setStyle(NotificationCompat.BigPictureStyle().bigPicture(bitmap))
+            }
+            if(event != null){
+                val detailIntent = Intent(applicationContext, EventDetailActivity::class.java).apply {
+                    flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                    putExtra(EventDetailActivity.EXTRA_ID, event.id)
+                    if(notificationId != null){
+                        putExtra(EventDetailActivity.EXTRA_NOTIFICATION_ID, notificationId.toInt())
+                    }
+                }
+
+                val pendingIntent = TaskStackBuilder.create(applicationContext).run {
+                    addNextIntentWithParentStack(detailIntent)
+                    getPendingIntent(NOTIFICATION_ID, PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE)
+                }
+
+                setContentIntent(pendingIntent)
             }
         }
 
@@ -80,7 +106,6 @@ class WorkerEventNotification(context: Context, workerParams: WorkerParameters):
             null
         }
     }
-
 
     companion object {
         val TAG: String = WorkerEventNotification::class.java.simpleName

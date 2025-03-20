@@ -8,6 +8,7 @@ import androidx.lifecycle.viewModelScope
 import dev.mayutama.project.eventapp.data.remote.response.ListEventsItem
 import dev.mayutama.project.eventapp.data.repository.EventFavoriteRepository
 import dev.mayutama.project.eventapp.data.repository.EventRepository
+import dev.mayutama.project.eventapp.data.repository.NotificationRepository
 import kotlinx.coroutines.launch
 import dev.mayutama.project.eventapp.util.Result
 import kotlinx.coroutines.Dispatchers
@@ -15,7 +16,8 @@ import kotlinx.coroutines.withContext
 
 class EventDetailViewModel(
     private val eventRepository: EventRepository,
-    private val eventFavoriteRepository: EventFavoriteRepository
+    private val eventFavoriteRepository: EventFavoriteRepository,
+    private val notificationRepository: NotificationRepository
 ): ViewModel() {
     private val _event = MutableLiveData<Result<ListEventsItem>>()
     val event: LiveData<Result<ListEventsItem>> get() = _event
@@ -56,6 +58,12 @@ class EventDetailViewModel(
             }
 
             getIsEventFavorite(data.id!!)
+        }
+    }
+
+    fun updateNotification(id: Int){
+        viewModelScope.launch {
+            notificationRepository.updateNotification(id)
         }
     }
 }

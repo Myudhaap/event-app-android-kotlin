@@ -58,6 +58,11 @@ class EventDetailActivity :
 
     private fun init(savedInstanceState: Bundle?){
         val id = intent.getIntExtra(EXTRA_ID, 0)
+        val notificationId = intent.getIntExtra(EXTRA_NOTIFICATION_ID, 0)
+        if(notificationId != 0){
+            eventDetailViewModel.updateNotification(notificationId)
+        }
+
         observeEventDetail()
         observeIsFavorite()
 
@@ -153,6 +158,7 @@ class EventDetailActivity :
 
     companion object {
         const val EXTRA_ID = "extra_id"
+        const val EXTRA_NOTIFICATION_ID = "extra_notification_id"
         val TAG: String = EventDetailActivity::class.java.simpleName
     }
 }

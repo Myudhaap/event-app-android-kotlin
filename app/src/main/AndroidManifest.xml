@@ -26,9 +26,11 @@
         </activity>
         <activity
             android:name=".ui.eventDetail.EventDetailActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:parentActivityName=".ui.main.MainActivity"/>
         <activity
             android:name=".ui.main.MainActivity"
+            android:launchMode="singleTop"
             android:exported="false">
         </activity>
     </application>

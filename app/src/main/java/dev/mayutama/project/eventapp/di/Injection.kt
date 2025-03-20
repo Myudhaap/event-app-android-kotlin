@@ -5,10 +5,12 @@ import dev.mayutama.project.eventapp.config.DataStoreConfig
 import dev.mayutama.project.eventapp.config.RetrofitConfig
 import dev.mayutama.project.eventapp.config.dataStore
 import dev.mayutama.project.eventapp.data.local.dao.EventFavoriteDao
+import dev.mayutama.project.eventapp.data.local.dao.NotificationDao
 import dev.mayutama.project.eventapp.data.local.database.EventDatabase
 import dev.mayutama.project.eventapp.data.remote.service.EventService
 import dev.mayutama.project.eventapp.data.repository.EventFavoriteRepository
 import dev.mayutama.project.eventapp.data.repository.EventRepository
+import dev.mayutama.project.eventapp.data.repository.NotificationRepository
 
 object Injection {
     fun provideDataStore(application: Application): DataStoreConfig {
@@ -25,5 +27,11 @@ object Injection {
         val database: EventDatabase = EventDatabase.getInstance(application)
         val eventFavoriteDao: EventFavoriteDao = database.eventFavoriteDao()
         return EventFavoriteRepository.getInstance(eventService, eventFavoriteDao)
+    }
+
+    fun provideNotificationRepository(application: Application): NotificationRepository {
+        val database: EventDatabase = EventDatabase.getInstance(application)
+        val notificationDao: NotificationDao = database.notificationDao()
+        return NotificationRepository.getInstance(notificationDao)
     }
 }

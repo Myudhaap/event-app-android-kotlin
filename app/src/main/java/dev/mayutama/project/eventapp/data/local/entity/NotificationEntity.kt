@@ -10,7 +10,7 @@ import androidx.room.PrimaryKey
 class NotificationEntity(
     @field:ColumnInfo(name = "id")
     @field:PrimaryKey(autoGenerate = true)
-    val id: Int,
+    val id: Int = 0,
 
     @field:ColumnInfo(name = "event_id")
     val eventId: Int,
@@ -28,7 +28,7 @@ class NotificationEntity(
     val name: String,
 
     @field:ColumnInfo(name = "is_open")
-    val isOpen: Boolean,
+    var isOpen: Boolean,
 
     @field:ColumnInfo(name = "created_at")
     val createdAt: String
