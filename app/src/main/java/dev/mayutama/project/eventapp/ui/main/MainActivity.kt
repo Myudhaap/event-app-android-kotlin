@@ -1,6 +1,7 @@
 package dev.mayutama.project.eventapp.ui.main
 
 import android.Manifest
+import android.content.Intent
 import android.os.Build
 import android.os.Bundle
 import android.view.View
@@ -16,6 +17,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import dev.mayutama.project.eventapp.R
 import dev.mayutama.project.eventapp.base.BaseActivity
 import dev.mayutama.project.eventapp.databinding.ActivityMainBinding
+import dev.mayutama.project.eventapp.ui.notification.NotificationActivity
 import dev.mayutama.project.eventapp.util.Result
 import dev.mayutama.project.eventapp.util.Util
 import dev.mayutama.project.eventapp.util.hide
@@ -87,16 +89,23 @@ class MainActivity :
 
     private fun initListener(){
         binding.imgSearch.setOnClickListener(this)
+        binding.imgNotification.setOnClickListener(this)
     }
 
     override fun onClick(v: View?) {
         when(v?.id) {
             R.id.img_search -> onClickSearch()
+            R.id.img_notification -> onClickNotification()
         }
     }
 
     fun onClickSearch(){
         binding.searchView.show()
+    }
+
+    fun onClickNotification(){
+        val intent = Intent(this, NotificationActivity::class.java)
+        startActivity(intent)
     }
 
     private fun setupBottomNav(){

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="180dp"
+    android:padding="@dimen/small"
+    style="@style/BaseContainerStyle">
+
+    <ImageView
+        android:id="@+id/img_notification"
+        android:layout_width="160dp"
+        android:layout_height="0dp"
+        tools:srcCompat="@tools:sample/avatars" 
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:scaleType="centerCrop"
+        android:contentDescription="@string/image_event"/>
+    
+    <TextView
+        android:id="@+id/tv_last_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/tv_title"
+        app:layout_constraintBottom_toBottomOf="@id/tv_title"
+        android:text="@string/format_last_time" />
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/img_notification"
+        app:layout_constraintEnd_toStartOf="@id/tv_last_time"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginHorizontal="@dimen/small"
+        android:text="@string/event"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:ellipsize="end"
+        android:maxLines="1"/>
+
+    <TextView
+        android:id="@+id/tv_description"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toEndOf="@id/img_notification"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_title"
+        android:layout_marginHorizontal="@dimen/small"
+        android:layout_marginTop="@dimen/base"
+        android:ellipsize="end"
+        android:maxLines="3"
+        android:text="@string/event"
+        android:textSize="16sp"/>
+
+    <ImageView
+        android:id="@+id/img_flag_new"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:src="@drawable/img_flag_new"
+        app:layout_constraintTop_toTopOf="@id/img_notification"
+        app:layout_constraintStart_toStartOf="@id/img_notification"
+        android:layout_marginStart="-10dp"
+        android:visibility="invisible"
+        android:contentDescription="@string/image_event"/>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -13,7 +13,6 @@ import java.util.Calendar
 class NotificationRepository(
     private val notificationDao: NotificationDao
 ) {
-
     suspend fun addNotification(event: ListEventsItem): Long{
         val notificationEntity = NotificationEntity(
             eventId = event.id!!,
@@ -46,6 +45,21 @@ class NotificationRepository(
         }catch (e: Exception){
             emit(Result.Error(e.message.toString()))
             Log.d(TAG, "getNotificationCount: ${e.message.toString()}")
+        }
+    }
+
+    fun getAllNotification(): LiveData<Result<List<NotificationEntity>>> = liveData {
+        emit(Result.Loading)
+
+        try{
+            val notificationList: LiveData<Result<List<NotificationEntity>>> = notificationDao.getAllNotification().map { notifications: List<NotificationEntity> ->
+                Result.Success(notifications)
+            }
+
+            emitSource(notificationList)
+        }catch (e: Exception){
+            emit(Result.Error(e.message.toString()))
+            Log.d(TAG, "getAllNotification: ${e.message.toString()}")
         }
     }
 
