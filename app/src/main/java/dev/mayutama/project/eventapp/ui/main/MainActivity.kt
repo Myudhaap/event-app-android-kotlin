@@ -10,6 +10,7 @@ import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatDelegate
+import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
@@ -40,6 +41,9 @@ class MainActivity :
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        Thread.sleep(3000)
+        installSplashScreen()
+
         checkTheme()
         super.onCreate(savedInstanceState)
 
