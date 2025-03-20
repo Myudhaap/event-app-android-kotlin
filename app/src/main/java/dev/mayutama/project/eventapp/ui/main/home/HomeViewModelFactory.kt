@@ -23,7 +23,7 @@ class HomeViewModelFactory private constructor(private val eventRepository: Even
 
         fun getInstance(application: Application): HomeViewModelFactory {
             return INSTANCE ?: synchronized(this){
-                INSTANCE = HomeViewModelFactory(Injection.provideEventRepository(application))
+                INSTANCE = HomeViewModelFactory(Injection.provideEventRepository())
                 INSTANCE as HomeViewModelFactory
             }
         }

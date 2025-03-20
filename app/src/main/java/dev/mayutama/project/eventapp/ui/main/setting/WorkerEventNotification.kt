@@ -64,6 +64,7 @@ class WorkerEventNotification(context: Context, workerParams: WorkerParameters):
             setSmallIcon(R.drawable.baseline_circle_notifications_24)
             setPriority(NotificationCompat.PRIORITY_HIGH)
             setDefaults(NotificationCompat.DEFAULT_ALL)
+            setAutoCancel(true)
             if(bitmap != null){
                 setStyle(NotificationCompat.BigPictureStyle().bigPicture(bitmap))
             }

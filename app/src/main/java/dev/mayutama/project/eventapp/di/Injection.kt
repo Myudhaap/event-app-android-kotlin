@@ -17,7 +17,7 @@ object Injection {
         return DataStoreConfig.getInstance(application.dataStore)
     }
 
-    fun provideEventRepository(application: Application): EventRepository {
+    fun provideEventRepository(): EventRepository {
         val eventService: EventService = RetrofitConfig.eventService
         return EventRepository(eventService)
     }

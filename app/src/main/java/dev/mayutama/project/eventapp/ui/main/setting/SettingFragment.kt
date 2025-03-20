@@ -88,8 +88,8 @@ class SettingFragment :
 
         val currentTime = Calendar.getInstance()
         val targetTime = Calendar.getInstance().apply {
-            set(Calendar.HOUR_OF_DAY, 12)
-            set(Calendar.MINUTE, 0)
+            set(Calendar.HOUR_OF_DAY, 15)
+            set(Calendar.MINUTE, 25)
             set(Calendar.SECOND, 0)
         }
 

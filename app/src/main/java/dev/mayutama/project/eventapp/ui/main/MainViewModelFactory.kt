@@ -29,7 +29,7 @@ class MainViewModelFactory private constructor(
             application: Application
         ): MainViewModelFactory {
             return INSTANCE ?: synchronized(this){
-                INSTANCE = MainViewModelFactory(Injection.provideEventRepository(application), Injection.provideNotificationRepository(application))
+                INSTANCE = MainViewModelFactory(Injection.provideEventRepository(), Injection.provideNotificationRepository(application))
                 INSTANCE as MainViewModelFactory
             }
         }

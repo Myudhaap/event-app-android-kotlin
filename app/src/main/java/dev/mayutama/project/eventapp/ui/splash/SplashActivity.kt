@@ -3,12 +3,8 @@ package dev.mayutama.project.eventapp.ui.splash
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.splashscreen.SplashScreen
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
 import dev.mayutama.project.eventapp.R
 import dev.mayutama.project.eventapp.ui.main.MainActivity

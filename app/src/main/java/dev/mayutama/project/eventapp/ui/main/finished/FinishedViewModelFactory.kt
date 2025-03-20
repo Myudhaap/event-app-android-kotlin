@@ -22,7 +22,7 @@ class FinishedViewModelFactory private constructor(private val eventRepository: 
 
         fun getInstance(application: Application): FinishedViewModelFactory {
             return INSTANCE ?: synchronized(this){
-                INSTANCE = FinishedViewModelFactory(Injection.provideEventRepository(application))
+                INSTANCE = FinishedViewModelFactory(Injection.provideEventRepository())
                 INSTANCE as FinishedViewModelFactory
             }
         }

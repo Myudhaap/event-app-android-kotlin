@@ -24,7 +24,7 @@ class UpcomingViewModelFactory private constructor(private val eventRepository: 
             application: Application
         ): UpcomingViewModelFactory {
             return INSTANCE ?: synchronized(this){
-                INSTANCE = UpcomingViewModelFactory(Injection.provideEventRepository(application))
+                INSTANCE = UpcomingViewModelFactory(Injection.provideEventRepository())
                 INSTANCE as UpcomingViewModelFactory
             }
         }

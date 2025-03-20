@@ -10,6 +10,7 @@ import dev.mayutama.project.eventapp.data.repository.EventRepository
 import dev.mayutama.project.eventapp.util.Result
 import kotlinx.coroutines.launch
 
+@Suppress("SameParameterValue", "SameParameterValue")
 class HomeViewModel(
     private val eventRepository: EventRepository
 ) : ViewModel() {

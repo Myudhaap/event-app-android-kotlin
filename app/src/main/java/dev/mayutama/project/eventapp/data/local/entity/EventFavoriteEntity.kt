@@ -9,7 +9,7 @@ import androidx.room.PrimaryKey
 )
 class EventFavoriteEntity(
     @field:ColumnInfo(name = "id")
-    @field:PrimaryKey()
+    @field:PrimaryKey
     val eventId: Int,
 
     @field:ColumnInfo(name = "media_cover")

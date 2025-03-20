@@ -10,10 +10,10 @@ import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
-import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import dev.mayutama.project.eventapp.R
 import dev.mayutama.project.eventapp.base.BaseActivity
 import dev.mayutama.project.eventapp.databinding.ActivityMainBinding
@@ -103,7 +103,7 @@ class MainActivity :
         binding.searchView.show()
     }
 
-    fun onClickNotification(){
+    private fun onClickNotification(){
         val intent = Intent(this, NotificationActivity::class.java)
         startActivity(intent)
     }

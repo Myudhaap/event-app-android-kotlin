@@ -24,7 +24,7 @@ class EventDetailViewModelFactory private constructor(private val eventRepositor
 
             fun getInstance(application: Application): EventDetailViewModelFactory {
                 return INSTANCE ?: synchronized(this){
-                    INSTANCE = EventDetailViewModelFactory(Injection.provideEventRepository(application), Injection.provideEventFavoriteRepository(application), Injection.provideNotificationRepository(application))
+                    INSTANCE = EventDetailViewModelFactory(Injection.provideEventRepository(), Injection.provideEventFavoriteRepository(application), Injection.provideNotificationRepository(application))
                     INSTANCE as EventDetailViewModelFactory
                 }
             }
