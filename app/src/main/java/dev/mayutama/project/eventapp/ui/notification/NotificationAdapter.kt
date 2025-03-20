@@ -1,5 +1,6 @@
 package dev.mayutama.project.eventapp.ui.notification
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -63,6 +64,7 @@ class NotificationAdapter: ListAdapter<NotificationEntity, NotificationAdapter.N
                 return oldItem.id == newItem.id
             }
 
+            @SuppressLint("DiffUtilEquals")
             override fun areContentsTheSame(
                 oldItem: NotificationEntity,
                 newItem: NotificationEntity
