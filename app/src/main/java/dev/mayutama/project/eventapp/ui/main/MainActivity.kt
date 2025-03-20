@@ -9,8 +9,6 @@ import android.widget.Toast
 import androidx.activity.OnBackPressedCallback
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatDelegate
-import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
@@ -41,10 +39,6 @@ class MainActivity :
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        Thread.sleep(3000)
-        installSplashScreen()
-
-        checkTheme()
         super.onCreate(savedInstanceState)
 
         init()
@@ -134,16 +128,6 @@ class MainActivity :
         binding.tvTitleApp.text = title
     }
 
-    private fun checkTheme() {
-        mainViewModel.getThemeSetting().observe(this){
-            if(it) {
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
-            } else {
-                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
-            }
-        }
-    }
-
     private fun observeEventSearch(){
         adapter = SearchEventAdapter()
         val layoutManager = LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false)
@@ -161,7 +145,7 @@ class MainActivity :
                 is Result.Success -> {
                     hideLoading()
 
-                    if(it.data.size > 0){
+                    if(it.data.isNotEmpty()){
                         adapter.submitList(it.data)
                     }else{
                         adapter.submitList(null)
