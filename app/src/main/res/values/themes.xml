@@ -45,8 +45,14 @@
         <item name="android:backgroundTint">@color/white</item>
     </style>
 
-    <style name="TextBadge">
+    <style name="StyleCategoryBadge">
         <item name="android:textColor">@color/black</item>
+        <item name="android:background">@drawable/bg_category</item>
+    </style>
+
+    <style name="StyleOnlineBadge">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:background">@drawable/bg_online</item>
     </style>
 
     <style name="LayoutAnimationStyle">

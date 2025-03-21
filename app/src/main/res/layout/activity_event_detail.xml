@@ -65,8 +65,17 @@
                 android:text="@string/event"
                 android:textSize="22sp"
                 android:textStyle="bold"
-                android:paddingHorizontal="@dimen/base"
-                style="@style/TextBadge"/>
+                android:paddingHorizontal="@dimen/base"/>
+
+            <TextView
+                android:id="@+id/tv_owner_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@id/tv_title"
+                android:layout_marginTop="@dimen/base"
+                android:text="@string/format_owner"
+                android:textSize="18sp"
+                android:paddingHorizontal="@dimen/base"/>
 
             <TextView
                 android:id="@+id/tv_quota"
@@ -83,29 +92,27 @@
                 android:id="@+id/tv_city_name"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/tv_title"
+                app:layout_constraintTop_toBottomOf="@id/tv_owner_name"
                 app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginStart="@dimen/base"
                 android:layout_marginTop="@dimen/base"
                 android:text="@string/online"
-                android:background="@drawable/bg_online"
                 android:paddingVertical="@dimen/small"
                 android:paddingHorizontal="@dimen/base"
-                style="@style/TextBadge"/>
+                style="@style/StyleOnlineBadge"/>
 
             <TextView
                 android:id="@+id/tv_category"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                app:layout_constraintTop_toBottomOf="@id/tv_title"
+                app:layout_constraintTop_toBottomOf="@id/tv_owner_name"
                 app:layout_constraintStart_toEndOf="@id/tv_city_name"
                 android:layout_marginStart="@dimen/base"
                 android:layout_marginTop="@dimen/base"
                 android:text="@string/category"
-                android:background="@drawable/bg_category"
                 android:paddingVertical="@dimen/small"
                 android:paddingHorizontal="@dimen/base"
-                style="@style/TextBadge"/>
+                style="@style/StyleCategoryBadge"/>
 
             <TextView
                 android:id="@+id/tv_times"

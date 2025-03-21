@@ -3,10 +3,12 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="320dp"
+    android:layout_height="wrap_content"
+    android:minHeight="320dp"
     android:layout_margin="@dimen/base"
     android:elevation="@dimen/extra_small"
-    app:cardMaxElevation="@dimen/extra_small">
+    app:cardMaxElevation="@dimen/extra_small"
+    style="@style/BaseContainerSecondaryStyle">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,8 +18,7 @@
         <ImageView
             android:id="@+id/img_upcoming"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1.8"
+            android:layout_height="220dp"
             tools:srcCompat="@tools:sample/avatars"
             android:scaleType="centerCrop"
             android:contentDescription="@string/media_cover_upcoming"/>
@@ -25,15 +26,11 @@
         <TextView
             android:id="@+id/tv_title"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1"
+            android:layout_height="wrap_content"
             android:padding="@dimen/small"
             android:textSize="18sp"
             android:textStyle="bold"
-            android:ellipsize="end"
-            android:maxLines="2"
-            android:text="@string/upcoming_title"
-            android:background="@color/white"/>
+            android:text="@string/upcoming_title"/>
     </LinearLayout>
 
 </com.google.android.material.card.MaterialCardView>

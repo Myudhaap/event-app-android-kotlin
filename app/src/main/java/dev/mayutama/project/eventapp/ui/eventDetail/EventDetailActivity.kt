@@ -104,9 +104,10 @@ class EventDetailActivity :
                         }
                         binding.tvCityName.text = it.cityName
                         binding.tvCategory.text = it.category
-                        binding.tvQuota.text = format(getString(R.string.quoat_format, it.quota))
+                        binding.tvQuota.text = format(getString(R.string.quoat_format, (it.quota!! - it.registrants!!)))
                         binding.tvTimes.text = format(getString(R.string.datetimes_format, "${it.beginTime} s\\d ${it.endTime}"))
                         binding.tvDescription.text = Html.fromHtml(it.description, Html.FROM_HTML_MODE_COMPACT)
+                        binding.tvOwnerName.text = String.format(getString(R.string.format_owner), it.ownerName)
                     }
                 }
                 is Result.Error -> {
